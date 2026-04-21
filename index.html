@@ -1,48 +1,37 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Family Heritage Tree</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0d1a0d;
-  --surface: #142214;
-  --card-m: linear-gradient(160deg,#1e3f6e,#2a5898);
-  --card-f: linear-gradient(160deg,#6e1e45,#982a62);
-  --card-dec: linear-gradient(160deg,#3a3a3a,#555);
-  --accent: #c9a84c;
-  --accent2: #e8cc7a;
-  --green-d: #1a3c1a;
-  --green-m: #2d5a27;
-  --green-l: #4a7c59;
-  --cream: #f0ebe0;
-  --line: #c9a84c;
-  --text-dim: #9eb09e;
+:root{
+  --bg:#0d1a0d;--surface:#142214;
+  --card-m:linear-gradient(160deg,#1e3f6e,#2a5898);
+  --card-f:linear-gradient(160deg,#6e1e45,#982a62);
+  --accent:#c9a84c;--accent2:#e8cc7a;
+  --green-d:#1a3c1a;--green-m:#2d5a27;
+  --cream:#f0ebe0;--text-dim:#9eb09e;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;font-family:'Crimson Text',Georgia,serif;background:var(--bg);color:var(--cream)}
 
-/* ─── HEADER ─── */
+/* HEADER */
 header{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  background:linear-gradient(90deg,#0d1a0d 0%,#1a3c1a 50%,#0d1a0d 100%);
+  background:linear-gradient(90deg,#0d1a0d,#1a3c1a 50%,#0d1a0d);
   border-bottom:2px solid var(--accent);
   padding:14px 32px;display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 4px 30px rgba(0,0,0,.7);
+  box-shadow:0 4px 30px rgba(0,0,0,.7);flex-wrap:wrap;gap:8px;
 }
 .hdr-brand{display:flex;flex-direction:column}
-.hdr-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--accent);letter-spacing:3px}
-.hdr-sub{font-size:.8rem;color:var(--text-dim);letter-spacing:2px;margin-top:2px}
-.hdr-right{display:flex;gap:12px;align-items:center}
+.hdr-title{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--accent);letter-spacing:3px}
+.hdr-sub{font-size:.72rem;color:var(--text-dim);letter-spacing:2px;margin-top:2px}
+.hdr-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.hdr-count{font-size:.76rem;color:var(--text-dim)}
 
-/* ─── BUTTONS ─── */
-.btn{
-  padding:9px 22px;border:2px solid var(--accent);background:transparent;
-  color:var(--accent);font-family:'Crimson Text',serif;font-size:.95rem;
-  cursor:pointer;letter-spacing:1px;transition:all .25s;border-radius:3px;
-}
+.btn{padding:9px 22px;border:2px solid var(--accent);background:transparent;color:var(--accent);font-family:'Crimson Text',serif;font-size:.95rem;cursor:pointer;letter-spacing:1px;transition:all .25s;border-radius:3px}
 .btn:hover{background:var(--accent);color:var(--bg)}
 .btn-fill{background:var(--accent);color:var(--bg)}
 .btn-fill:hover{background:var(--accent2)}
@@ -50,209 +39,158 @@ header{
 .btn-red:hover{background:#c0392b;color:#fff}
 .btn-sm{padding:6px 14px;font-size:.85rem}
 
-/* ─── LEGEND ─── */
+/* LEGEND */
 #legend{
-  position:fixed;top:70px;left:0;right:0;z-index:190;
-  background:rgba(13,26,13,.92);border-bottom:1px solid var(--green-m);
-  display:flex;gap:24px;justify-content:center;align-items:center;
-  padding:8px 20px;flex-wrap:wrap;backdrop-filter:blur(6px);
+  position:fixed;top:72px;left:0;right:0;z-index:190;
+  background:rgba(13,26,13,.94);border-bottom:1px solid var(--green-m);
+  display:flex;gap:20px;justify-content:center;align-items:center;
+  padding:7px 20px;flex-wrap:wrap;backdrop-filter:blur(6px);
 }
-.leg{display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--text-dim)}
-.leg-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--accent);flex-shrink:0}
-.leg-line{width:28px;height:2px;background:var(--accent);border-radius:1px}
+.leg{display:flex;align-items:center;gap:6px;font-size:.73rem;color:var(--text-dim)}
+.leg-dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);flex-shrink:0}
+.leg-line{width:24px;height:2px;background:var(--accent);border-radius:1px}
 
-/* ─── TREE AREA ─── */
-#tree-view{
-  margin-top:106px;overflow:auto;padding:30px 20px 60px;
-  min-height:calc(100vh - 106px);
-}
+/* SYNC BADGE */
+#sync-badge{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;padding:3px 9px;border-radius:10px;border:1px solid var(--green-m);color:var(--text-dim);background:rgba(0,0,0,.35);transition:all .3s}
+#sync-badge.saving{border-color:var(--accent);color:var(--accent)}
+#sync-badge.saved{border-color:#4caf50;color:#4caf50}
+#sync-badge.err{border-color:#e74c3c;color:#e74c3c}
+.sdot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.sdot.pulse{animation:sdot 1s ease-in-out infinite}
+@keyframes sdot{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* LOADING */
+#loading{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.load-icon{font-size:3rem;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
+.load-txt{font-family:'Playfair Display',serif;color:var(--accent);font-size:1.1rem;letter-spacing:2px}
+.load-bar{width:180px;height:3px;background:var(--green-m);border-radius:2px;overflow:hidden}
+.load-fill{height:100%;background:var(--accent);animation:lbar 2s ease forwards}
+@keyframes lbar{to{width:100%}}
+
+/* TREE */
+#tree-view{margin-top:108px;overflow:auto;padding:30px 20px 70px;min-height:calc(100vh - 108px)}
 #tree-canvas{position:relative;margin:0 auto}
 #tree-svg{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
 
-/* ─── MEMBER CARD ─── */
-.mcard{
-  position:absolute;width:122px;
-  border-radius:10px;padding:14px 10px 12px;cursor:pointer;text-align:center;
-  transition:transform .25s,box-shadow .25s,border-color .25s;
-  box-shadow:0 4px 18px rgba(0,0,0,.55);border:2px solid rgba(201,168,76,.15);
-  color:#fff;
-}
+/* CARDS */
+.mcard{position:absolute;width:122px;border-radius:10px;padding:14px 10px 12px;cursor:pointer;text-align:center;transition:transform .25s,box-shadow .25s,border-color .25s;box-shadow:0 4px 18px rgba(0,0,0,.55);border:2px solid rgba(201,168,76,.15);color:#fff}
 .mcard:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(201,168,76,.35);border-color:var(--accent)}
 .mcard.male{background:var(--card-m)}
 .mcard.female{background:var(--card-f)}
-.mcard.deceased{opacity:.7;filter:saturate(.5)}
-.mcard.deceased .mavatar{background:var(--card-dec)!important}
-.mavatar{
-  width:52px;height:52px;border-radius:50%;margin:0 auto 8px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;
-  border:3px solid rgba(255,255,255,.35);
-  background:rgba(255,255,255,.15);
-}
-.mname{font-family:'Playfair Display',serif;font-size:.72rem;font-weight:700;line-height:1.3;margin-bottom:3px;color:#fff}
-.mrole{font-size:.63rem;color:rgba(255,255,255,.7);font-style:italic}
-.mdob{font-size:.58rem;color:rgba(255,255,255,.55);margin-top:3px}
-.dec-badge{
-  position:absolute;top:5px;right:5px;font-size:.52rem;
-  background:rgba(0,0,0,.5);color:#ccc;padding:1px 4px;border-radius:3px;
-}
-.gen-badge{
-  position:absolute;top:5px;left:5px;font-size:.52rem;
-  background:rgba(201,168,76,.3);color:var(--accent);padding:1px 4px;border-radius:3px;
-}
+.mcard.deceased{opacity:.65;filter:saturate(.4)}
+.mavatar{width:52px;height:52px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;border:3px solid rgba(255,255,255,.35);background:rgba(255,255,255,.15)}
+.mname{font-family:'Playfair Display',serif;font-size:.69rem;font-weight:700;line-height:1.3;margin-bottom:3px;color:#fff}
+.mrole{font-size:.61rem;color:rgba(255,255,255,.7);font-style:italic}
+.mdob{font-size:.56rem;color:rgba(255,255,255,.5);margin-top:3px}
+.dec-badge{position:absolute;top:5px;right:5px;font-size:.5rem;background:rgba(0,0,0,.5);color:#ccc;padding:1px 4px;border-radius:3px}
+.gen-badge{position:absolute;top:5px;left:5px;font-size:.5rem;background:rgba(201,168,76,.3);color:var(--accent);padding:1px 4px;border-radius:3px}
+.gen-label{position:absolute;left:0;font-family:'Playfair Display',serif;font-size:.7rem;color:var(--accent);opacity:.5;letter-spacing:1px;white-space:nowrap}
 
-/* ─── MODALS ─── */
-.overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;
-  display:flex;align-items:center;justify-content:center;
-  backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity .3s;
-}
+/* MODALS */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity .3s}
 .overlay.on{opacity:1;pointer-events:all}
-.modal{
-  background:linear-gradient(135deg,var(--surface),var(--bg));
-  border:2px solid var(--accent);border-radius:14px;
-  padding:36px;max-width:520px;width:92%;
-  max-height:90vh;overflow-y:auto;
-  transform:scale(.92) translateY(20px);transition:transform .3s;position:relative;
-}
+.modal{background:linear-gradient(135deg,var(--surface),var(--bg));border:2px solid var(--accent);border-radius:14px;padding:34px;max-width:520px;width:92%;max-height:90vh;overflow-y:auto;transform:scale(.92) translateY(20px);transition:transform .3s;position:relative}
 .overlay.on .modal{transform:scale(1) translateY(0)}
-.mclose{
-  position:absolute;top:14px;right:18px;background:none;border:none;
-  color:var(--accent);font-size:1.6rem;cursor:pointer;line-height:1;opacity:.7;
-}
+.mclose{position:absolute;top:13px;right:16px;background:none;border:none;color:var(--accent);font-size:1.5rem;cursor:pointer;line-height:1;opacity:.7}
 .mclose:hover{opacity:1}
 
-/* member detail modal */
-.det-avatar{
-  width:86px;height:86px;border-radius:50%;margin:0 auto 18px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;
-  border:4px solid var(--accent);color:#fff;
-}
-.det-name{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--accent);text-align:center;margin-bottom:4px}
-.det-role{text-align:center;color:var(--text-dim);font-style:italic;margin-bottom:22px;font-size:1rem}
-.det-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
-.det-item label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:3px}
-.det-item span{font-size:.98rem;color:var(--cream)}
+/* DETAIL */
+.det-avatar{width:82px;height:82px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;border:4px solid var(--accent);color:#fff}
+.det-name{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent);text-align:center;margin-bottom:4px}
+.det-role{text-align:center;color:var(--text-dim);font-style:italic;margin-bottom:20px;font-size:.97rem}
+.det-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:16px}
+.det-item label{display:block;font-size:.64rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:3px}
+.det-item span{font-size:.95rem;color:var(--cream)}
 .det-link{cursor:pointer;color:var(--accent2)!important;text-decoration:underline dotted}
-.det-bio{border-top:1px solid var(--green-m);padding-top:18px}
-.det-bio label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:8px}
-.det-bio p{color:#c5d5c5;line-height:1.75;font-size:.95rem}
-.det-actions{display:flex;gap:10px;margin-top:22px;justify-content:flex-end}
-.det-actions .btn{padding:8px 18px;font-size:.88rem}
+.det-bio{border-top:1px solid var(--green-m);padding-top:16px}
+.det-bio label{display:block;font-size:.64rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:7px}
+.det-bio p{color:#c5d5c5;line-height:1.75;font-size:.93rem}
+.det-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
 
-/* login modal */
-.login-box{max-width:380px}
-.login-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent);text-align:center;margin-bottom:28px}
-.login-hint{text-align:center;margin-top:14px;font-size:.78rem;color:var(--text-dim)}
-.err{color:#e74c3c;font-size:.85rem;margin-top:8px;text-align:center;display:none}
+/* LOGIN */
+.login-box{max-width:370px}
+.login-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--accent);text-align:center;margin-bottom:26px}
+.login-hint{text-align:center;margin-top:12px;font-size:.76rem;color:var(--text-dim)}
+.err{color:#e74c3c;font-size:.83rem;margin-top:7px;text-align:center;display:none}
 
-/* ─── FORMS ─── */
-.fg{margin-bottom:16px}
-.fg label{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:1.1px;color:var(--accent);margin-bottom:6px}
-.fg input,.fg select,.fg textarea{
-  width:100%;background:rgba(255,255,255,.06);
-  border:1px solid var(--green-m);border-radius:6px;
-  padding:11px 14px;color:var(--cream);
-  font-family:'Crimson Text',serif;font-size:.95rem;transition:border-color .25s;
-}
+/* FORMS */
+.fg{margin-bottom:13px}
+.fg label{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:1.1px;color:var(--accent);margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--green-m);border-radius:6px;padding:10px 12px;color:var(--cream);font-family:'Crimson Text',serif;font-size:.92rem;transition:border-color .25s}
 .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--accent)}
-.fg textarea{resize:vertical;min-height:75px}
+.fg textarea{resize:vertical;min-height:68px}
 .fg select option{background:var(--surface)}
-.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-/* ─── ADMIN PANEL ─── */
-#adm{
-  position:fixed;right:0;top:0;bottom:0;width:370px;
-  background:linear-gradient(180deg,#0a140a,var(--surface));
-  border-left:2px solid var(--accent);padding:76px 22px 22px;
-  overflow-y:auto;z-index:150;
-  transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
-}
+/* ADMIN PANEL */
+#adm{position:fixed;right:0;top:0;bottom:0;width:370px;background:linear-gradient(180deg,#0a140a,var(--surface));border-left:2px solid var(--accent);padding:74px 18px 18px;overflow-y:auto;z-index:150;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
 #adm.open{transform:translateX(0)}
-.adm-title{
-  font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--accent);
-  margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--green-m);
-}
-.adm-form{
-  background:rgba(255,255,255,.04);border:1px solid var(--green-m);
-  border-radius:10px;padding:18px;margin-bottom:18px;display:none;
-}
-.adm-form-title{font-family:'Playfair Display',serif;color:var(--accent);font-size:1rem;margin-bottom:14px}
-.adm-form .fg{margin-bottom:12px}
-.adm-form .fg label{font-size:.65rem}
-.adm-form .fg input,.adm-form .fg select,.adm-form .fg textarea{padding:9px 12px;font-size:.88rem}
-.adm-form .fg-row{gap:8px}
-
-.mlist-item{
-  display:flex;align-items:center;gap:10px;padding:11px;margin-bottom:7px;
-  background:rgba(255,255,255,.04);border-radius:8px;border:1px solid transparent;
-  transition:all .2s;
-}
+.adm-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--accent);margin-bottom:14px;padding-bottom:11px;border-bottom:1px solid var(--green-m)}
+.adm-form{background:rgba(255,255,255,.04);border:1px solid var(--green-m);border-radius:10px;padding:15px;margin-bottom:14px;display:none}
+.adm-form-title{font-family:'Playfair Display',serif;color:var(--accent);font-size:.96rem;margin-bottom:11px}
+.adm-form .fg{margin-bottom:9px}
+.adm-form .fg label{font-size:.61rem}
+.adm-form .fg input,.adm-form .fg select,.adm-form .fg textarea{padding:8px 10px;font-size:.84rem}
+.mlist-item{display:flex;align-items:center;gap:9px;padding:9px;margin-bottom:5px;background:rgba(255,255,255,.04);border-radius:8px;border:1px solid transparent;transition:all .2s}
 .mlist-item:hover{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.07)}
-.mlist-av{
-  width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-weight:700;color:#fff;font-size:.9rem;flex-shrink:0;
-}
+.mlist-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:#fff;font-size:.82rem;flex-shrink:0}
 .mlist-info{flex:1;min-width:0}
-.mlist-name{font-size:.9rem;color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mlist-role{font-size:.7rem;color:var(--text-dim)}
-.mlist-btns{display:flex;gap:4px;flex-shrink:0}
-.ibtn{
-  background:none;border:1px solid transparent;color:var(--text-dim);
-  cursor:pointer;padding:4px 7px;border-radius:4px;font-size:.85rem;transition:all .2s;
-}
+.mlist-name{font-size:.86rem;color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mlist-role{font-size:.66rem;color:var(--text-dim)}
+.mlist-btns{display:flex;gap:3px;flex-shrink:0}
+.ibtn{background:none;border:1px solid transparent;color:var(--text-dim);cursor:pointer;padding:4px 6px;border-radius:4px;font-size:.82rem;transition:all .2s}
 .ibtn:hover{border-color:var(--accent);color:var(--accent)}
 .ibtn.del:hover{border-color:#c0392b;color:#c0392b}
 
-/* ─── TOAST ─── */
-#toast{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
-  background:var(--accent);color:var(--bg);padding:11px 26px;
-  border-radius:6px;font-size:.95rem;z-index:9999;
-  transition:transform .3s;pointer-events:none;white-space:nowrap;font-weight:600;
-}
+/* TOAST */
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--accent);color:var(--bg);padding:10px 24px;border-radius:6px;font-size:.9rem;z-index:9999;transition:transform .3s;pointer-events:none;white-space:nowrap;font-weight:600}
 #toast.on{transform:translateX(-50%) translateY(0)}
 
-/* ─── GEN LABELS ─── */
-.gen-label{
-  position:absolute;left:0;font-family:'Playfair Display',serif;
-  font-size:.75rem;color:var(--accent);opacity:.6;letter-spacing:1px;
-  writing-mode:horizontal-tb;white-space:nowrap;
-}
+/* NOTICE */
+#notice{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(13,26,13,.95);border-top:1px solid var(--green-m);padding:6px 20px;text-align:center;font-size:.7rem;color:var(--text-dim);display:none}
 
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--green-m);border-radius:3px}
+::-webkit-scrollbar-thumb{background:var(--green-m);border-radius:2px}
 ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
-
-@media(max-width:600px){
-  header{padding:12px 16px}.hdr-title{font-size:1.3rem}
-  #adm{width:100vw}.modal{padding:24px}
-}
+@media(max-width:600px){header{padding:10px 14px}.hdr-title{font-size:1.2rem}#adm{width:100vw}}
 </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
+<!-- LOADING SCREEN -->
+<div id="loading">
+  <div class="load-icon">🌳</div>
+  <div class="load-txt">Loading Family Tree…</div>
+  <div class="load-bar"><div class="load-fill" style="width:0%"></div></div>
+</div>
+
+<!-- HEADER -->
 <header>
   <div class="hdr-brand">
     <div class="hdr-title">🌳 Family Heritage</div>
     <div class="hdr-sub">THE SHARMA FAMILY TREE</div>
   </div>
   <div class="hdr-right">
-    <span id="lbl-count" style="font-size:.8rem;color:var(--text-dim)"></span>
+    <div id="sync-badge"><div class="sdot"></div><span id="sync-txt">Live</span></div>
+    <span class="hdr-count" id="lbl-count"></span>
     <button class="btn" id="btn-login" onclick="openLogin()">⚿ Admin Login</button>
     <button class="btn btn-fill" id="btn-adm" style="display:none" onclick="toggleAdm()">Manage ▸</button>
     <button class="btn btn-red btn-sm" id="btn-logout" style="display:none" onclick="doLogout()">Logout</button>
   </div>
 </header>
 
-<!-- ══ LEGEND ══ -->
+<!-- LEGEND -->
+<div id="legend">
+  <div class="leg"><div class="leg-dot" style="background:var(--card-m)"></div>Male</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--card-f)"></div>Female</div>
+  <div class="leg"><div class="leg-dot" style="background:#444;border-color:#777"></div>Deceased</div>
+  <div class="leg"><div class="leg-line"></div>Marriage ♥</div>
+  <div class="leg" style="font-style:italic">Click any card for details</div>
+</div>
 
-
-<!-- ══ TREE ══ -->
+<!-- TREE AREA -->
 <div id="tree-view">
   <div id="tree-canvas">
     <svg id="tree-svg"></svg>
@@ -260,31 +198,34 @@ header{
   </div>
 </div>
 
-<!-- ══ MEMBER DETAIL MODAL ══ -->
+<!-- DETAIL MODAL -->
 <div class="overlay" id="ov-detail">
-  <div class="modal" id="det-modal">
+  <div class="modal">
     <button class="mclose" onclick="closeOv('ov-detail')">×</button>
     <div id="det-body"></div>
   </div>
 </div>
 
-<!-- ══ LOGIN MODAL ══ -->
+<!-- LOGIN MODAL -->
 <div class="overlay" id="ov-login">
   <div class="modal login-box">
     <button class="mclose" onclick="closeOv('ov-login')">×</button>
     <div class="login-title">🔐 Admin Login</div>
     <div class="fg"><label>Username</label><input type="text" id="lu" placeholder="admin"/></div>
     <div class="fg"><label>Password</label><input type="password" id="lp" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-    <div class="err" id="lerr">Invalid credentials. Try again.</div>
-    <button class="btn btn-fill" style="width:100%;margin-top:8px" onclick="doLogin()">Login</button>
-    <p class="login-hint">Default credentials: <strong>admin</strong> / <strong>family123</strong></p>
+    <div class="err" id="lerr">Invalid credentials. Please try again.</div>
+    <button class="btn btn-fill" style="width:100%;margin-top:10px" onclick="doLogin()">Login</button>
+    <p class="login-hint">Default: <strong>admin</strong> / <strong>family123</strong></p>
   </div>
 </div>
 
-<!-- ══ ADMIN PANEL ══ -->
+<!-- ADMIN SIDE PANEL -->
 <div id="adm">
-  <div class="adm-title">👨‍👩‍👧‍👦 Family Members</div>
-  <button class="btn btn-fill" style="width:100%;margin-bottom:18px" onclick="showForm()">＋ Add New Member</button>
+  <div class="adm-title">
+    👨‍👩‍👧‍👦 Family Members
+    <span style="display:block;font-family:'Crimson Text';font-size:.63rem;color:var(--text-dim);font-weight:normal;margin-top:2px">All changes saved &amp; visible to every visitor</span>
+  </div>
+  <button class="btn btn-fill" style="width:100%;margin-bottom:13px" onclick="showForm()">＋ Add New Member</button>
 
   <!-- FORM -->
   <div class="adm-form" id="adm-form">
@@ -301,416 +242,271 @@ header{
       <div class="fg"><label>Born (year)</label><input type="text" id="f-dob" placeholder="1985"/></div>
       <div class="fg"><label>Died (year)</label><input type="text" id="f-dod" placeholder="if deceased"/></div>
     </div>
-    <div class="fg"><label>Relation / Role</label><input type="text" id="f-role" placeholder="Son, Daughter-in-law…"/></div>
-    <div class="fg"><label>Parent (family head)</label>
-      <select id="f-parent"><option value="">— Root / No parent —</option></select>
-    </div>
-    <div class="fg"><label>Spouse</label>
-      <select id="f-spouse"><option value="">— None —</option></select>
-    </div>
+    <div class="fg"><label>Role / Relation</label><input type="text" id="f-role" placeholder="Son, Daughter-in-law…"/></div>
+    <div class="fg"><label>Parent</label><select id="f-parent"><option value="">— Root / No parent —</option></select></div>
+    <div class="fg"><label>Spouse</label><select id="f-spouse"><option value="">— None —</option></select></div>
     <div class="fg"><label>Location</label><input type="text" id="f-loc" placeholder="City, State"/></div>
     <div class="fg-row">
       <div class="fg"><label>Phone</label><input type="text" id="f-phone"/></div>
       <div class="fg"><label>Email</label><input type="text" id="f-email"/></div>
     </div>
-    <div class="fg"><label>Bio / About</label><textarea id="f-bio" rows="3"></textarea></div>
-    <div style="display:flex;gap:8px;margin-top:4px">
+    <div class="fg"><label>Bio</label><textarea id="f-bio" rows="3"></textarea></div>
+    <div style="display:flex;gap:8px;margin-top:6px">
       <button class="btn btn-fill" style="flex:1" onclick="saveMember()">✓ Save</button>
       <button class="btn" onclick="cancelForm()">Cancel</button>
     </div>
   </div>
 
-  <!-- LIST -->
   <div id="adm-list"></div>
 </div>
 
-<!-- ══ TOAST ══ -->
 <div id="toast"></div>
+<div id="notice">🌐 This family tree is shared — all visitors see the same live data.</div>
 
 <script>
-/* ═══════════════════════════════════════════
-   DEFAULT FAMILY DATA
-═══════════════════════════════════════════ */
-const DEFAULT = [
-  {id:1,name:"Ram Prasad Sharma",gender:"male",dob:"1935",dod:"2010",
-   relation:"Patriarch",location:"Jaipur, Rajasthan",phone:"",email:"",
-   bio:"Ram Prasad was the founder of our family legacy. A man of exceptional wisdom and quiet strength, he built our ancestral home in 1960 with his own hands. He worked as a merchant and farmer, and was deeply respected in the community for his honesty and generosity. His values and principles live on in every generation he nurtured.",
-   parentId:null,spouseId:2,generation:0},
-
-  {id:2,name:"Savitri Devi Sharma",gender:"female",dob:"1938",dod:null,
-   relation:"Matriarch",location:"Jaipur, Rajasthan",phone:"+91 98765 00001",email:"",
-   bio:"Savitri Devi is the heart and soul of this family. At 86, she still wakes before dawn to offer prayers. Known for her legendary cooking and unwavering love, she has held this family together through every storm. Her stories and wisdom are treasured by all generations.",
-   parentId:null,spouseId:1,generation:0},
-
-  {id:3,name:"Mohan Lal Sharma",gender:"male",dob:"1958",dod:null,
-   relation:"Eldest Son",location:"Delhi",phone:"+91 98765 00002",email:"mohan@sharma.com",
-   bio:"Mohan followed his father's entrepreneurial spirit and built a successful textile business in Delhi. Known for his sharp business acumen and warm leadership, he is the family's anchor in the capital city. He mentors young family members in business and life.",
-   parentId:1,spouseId:4,generation:1},
-
-  {id:4,name:"Kamla Sharma",gender:"female",dob:"1961",dod:null,
-   relation:"Daughter-in-law",location:"Delhi",phone:"+91 98765 00003",email:"kamla@sharma.com",
-   bio:"Kamla is a dedicated school principal and devoted homemaker. She raised her children with extraordinary values and brought warmth and structure into Mohan's household. She is deeply loved by the entire extended family.",
-   parentId:null,spouseId:3,generation:1},
-
-  {id:5,name:"Ramesh Sharma",gender:"male",dob:"1961",dod:null,
-   relation:"Second Son",location:"Mumbai",phone:"+91 98765 00004",email:"ramesh@sharma.com",
-   bio:"Ramesh is a retired senior civil engineer who transformed Mumbai's infrastructure through decades of dedicated public service. Though far from the ancestral home, he never misses a family gathering and is known for his boisterous laugh and generous spirit.",
-   parentId:1,spouseId:6,generation:1},
-
-  {id:6,name:"Meena Sharma",gender:"female",dob:"1964",dod:null,
-   relation:"Daughter-in-law",location:"Mumbai",phone:"+91 98765 00005",email:"",
-   bio:"Dr. Meena Sharma is a cardiologist and the family's go-to health advisor. Her calm, precise nature has been a great complement to Ramesh's warmth. She runs a free weekend clinic for underprivileged patients near their home.",
-   parentId:null,spouseId:5,generation:1},
-
-  {id:7,name:"Sunita Verma",gender:"female",dob:"1963",dod:null,
-   relation:"Daughter",location:"Lucknow, UP",phone:"+91 98765 00006",email:"sunita@verma.com",
-   bio:"Sunita is the beloved only daughter of Ram Prasad and Savitri. Her cheerful nature and generous heart make her the life of every family gathering. She teaches classical dance and runs a cultural arts center in Lucknow.",
-   parentId:1,spouseId:8,generation:1},
-
-  {id:8,name:"Rajesh Verma",gender:"male",dob:"1960",dod:null,
-   relation:"Son-in-law",location:"Lucknow, UP",phone:"+91 98765 00007",email:"",
-   bio:"Rajesh is a retired IAS officer who served with distinction for over 30 years. He is deeply respected for his integrity, dedication, and service to Uttar Pradesh. He spends his retirement writing memoirs and mentoring young civil service aspirants.",
-   parentId:null,spouseId:7,generation:1},
-
-  {id:9,name:"Amit Sharma",gender:"male",dob:"1983",dod:null,
-   relation:"Grandson",location:"Delhi",phone:"+91 98765 00008",email:"amit@sharma.com",
-   bio:"Amit is a senior software architect at a leading tech company. Passionate about cricket, travel, and open-source development, he is the family's tech guru. He built this very family tree website! His quick wit and helpful nature make him a favourite at every gathering.",
-   parentId:3,spouseId:14,generation:2},
-
-  {id:10,name:"Priya Sharma",gender:"female",dob:"1986",dod:null,
-   relation:"Granddaughter",location:"Bangalore",phone:"+91 98765 00009",email:"",
-   bio:"Priya is an award-winning graphic designer and creative director at a Bangalore design studio. Her artistic sensibility and bold aesthetics have won her international recognition. She is the family's creative soul and loves painting in her spare time.",
-   parentId:3,spouseId:null,generation:2},
-
-  {id:11,name:"Ravi Sharma",gender:"male",dob:"1985",dob:"1985",dod:null,
-   relation:"Grandson",location:"Mumbai",phone:"+91 98765 00010",email:"ravi@sharma.com",
-   bio:"Ravi is a fund manager and financial analyst who inherited both his father's engineering precision and his mother's medical exactitude. An avid photographer and jazz enthusiast, he finds beauty in numbers and melodies alike.",
-   parentId:5,spouseId:12,generation:2},
-
-  {id:12,name:"Kavita Sharma",gender:"female",dob:"1987",dod:null,
-   relation:"Granddaughter-in-law",location:"Mumbai",phone:"+91 98765 00011",email:"",
-   bio:"Kavita is a fashion designer and entrepreneur who runs two boutiques in Mumbai. Her impeccable taste and business sense have made her label a household name in the city. She is known for her infectious positivity and sharp fashion sense.",
-   parentId:null,spouseId:11,generation:2},
-
-  {id:13,name:"Pooja Sharma",gender:"female",dob:"1988",dod:null,
-   relation:"Granddaughter",location:"Mumbai",phone:"+91 98765 00012",email:"",
-   bio:"Pooja is a yoga instructor, teacher, and meditation guide. Her calm presence is a balm to the family during stressful times. She volunteers with three NGOs and has brought mindfulness practices to her entire community.",
-   parentId:5,spouseId:null,generation:2},
-
-  {id:14,name:"Sanya Sharma",gender:"female",dob:"1985",dod:null,
-   relation:"Granddaughter-in-law",location:"Delhi",phone:"+91 98765 00013",email:"sanya@sharma.com",
-   bio:"Sanya is a marketing strategist who married Amit in 2010. Vibrant, eloquent, and endlessly curious, she has become an integral part of the family. She runs her own boutique marketing agency and is a sought-after public speaker.",
-   parentId:null,spouseId:9,generation:2},
-
-  {id:15,name:"Arjun Verma",gender:"male",dob:"1987",dod:null,
-   relation:"Grandson",location:"Lucknow, UP",phone:"+91 98765 00014",email:"arjun@verma.com",
-   bio:"Arjun is a practicing advocate at the Allahabad High Court with a passion for constitutional law. He has taken on several landmark pro-bono cases for marginalized communities. His mother Sunita's artistic spirit is alive in his love for literature and theatre.",
-   parentId:7,spouseId:null,generation:2},
-
-  {id:16,name:"Divya Verma",gender:"female",dob:"1990",dod:null,
-   relation:"Granddaughter",location:"Lucknow, UP",phone:"+91 98765 00015",email:"",
-   bio:"Divya is a visual artist who runs an art school in Lucknow. Her works have been exhibited in galleries across India and in Paris. She inherited her grandmother Savitri's creativity and her father's meticulous nature—a rare and beautiful combination.",
-   parentId:7,spouseId:null,generation:2},
-
-  {id:17,name:"Aryan Sharma",gender:"male",dob:"2010",dod:null,
-   relation:"Great-grandson",location:"Delhi",phone:"",email:"",
-   bio:"Aryan is the eldest great-grandchild and a source of immense pride and joy. He is a football enthusiast, an avid reader, and adores his great-grandmother Savitri's stories. He aspires to be a pilot one day.",
-   parentId:9,spouseId:null,generation:3},
-
-  {id:18,name:"Aanya Sharma",gender:"female",dob:"2013",dod:null,
-   relation:"Great-granddaughter",location:"Delhi",phone:"",email:"",
-   bio:"Aanya is a bright, imaginative child who loves painting, dancing, and making up stories. She is Aryan's little sister and the youngest child of Amit and Sanya. She has already won several school art competitions.",
-   parentId:9,spouseId:null,generation:3},
-
-  {id:19,name:"Dev Sharma",gender:"male",dob:"2012",dod:null,
-   relation:"Great-grandson",location:"Mumbai",phone:"",email:"",
-   bio:"Dev is an endlessly curious and energetic boy who loves science experiments, robotics, and astronomy. He wants to be an astronaut and asks questions that stump every adult at the dinner table. He is Ravi and Kavita's son.",
-   parentId:11,spouseId:null,generation:3}
+/* ════════════════ SEED DATA ════════════════ */
+const SEED = [
+  {id:1,name:"Ram Prasad Sharma",gender:"male",dob:"1935",dod:"2010",relation:"Patriarch",location:"Jaipur, Rajasthan",phone:"",email:"",bio:"Ram Prasad was the founder of our family legacy. A man of exceptional wisdom and quiet strength, he built our ancestral home in 1960 with his own hands. Worked as a merchant and farmer, deeply respected in his community for honesty and generosity.",parentId:null,spouseId:2,generation:0},
+  {id:2,name:"Savitri Devi Sharma",gender:"female",dob:"1938",dod:null,relation:"Matriarch",location:"Jaipur, Rajasthan",phone:"+91 98765 00001",email:"",bio:"Savitri Devi is the heart and soul of this family. At 86, she still wakes before dawn to offer prayers. Known for her legendary cooking and unwavering love, she has held this family together through every storm.",parentId:null,spouseId:1,generation:0},
+  {id:3,name:"Mohan Lal Sharma",gender:"male",dob:"1958",dod:null,relation:"Eldest Son",location:"Delhi",phone:"+91 98765 00002",email:"mohan@sharma.com",bio:"Mohan built a successful textile business in Delhi. Known for sharp business acumen and warm leadership. He mentors young family members in business and life.",parentId:1,spouseId:4,generation:1},
+  {id:4,name:"Kamla Sharma",gender:"female",dob:"1961",dod:null,relation:"Daughter-in-law",location:"Delhi",phone:"+91 98765 00003",email:"kamla@sharma.com",bio:"Kamla is a dedicated school principal and devoted homemaker. She raised her children with extraordinary values and brought warmth into Mohan's household.",parentId:null,spouseId:3,generation:1},
+  {id:5,name:"Ramesh Sharma",gender:"male",dob:"1961",dod:null,relation:"Second Son",location:"Mumbai",phone:"+91 98765 00004",email:"ramesh@sharma.com",bio:"Ramesh is a retired senior civil engineer who worked on Mumbai's infrastructure for decades. He never misses a family gathering and is known for his boisterous laugh.",parentId:1,spouseId:6,generation:1},
+  {id:6,name:"Meena Sharma",gender:"female",dob:"1964",dod:null,relation:"Daughter-in-law",location:"Mumbai",phone:"+91 98765 00005",email:"",bio:"Dr. Meena Sharma is a cardiologist and the family's go-to health advisor. She runs a free weekend clinic for underprivileged patients.",parentId:null,spouseId:5,generation:1},
+  {id:7,name:"Sunita Verma",gender:"female",dob:"1963",dod:null,relation:"Daughter",location:"Lucknow, UP",phone:"+91 98765 00006",email:"sunita@verma.com",bio:"Sunita teaches classical dance and runs a cultural arts center in Lucknow. Her cheerful nature and generous heart make her the life of every gathering.",parentId:1,spouseId:8,generation:1},
+  {id:8,name:"Rajesh Verma",gender:"male",dob:"1960",dod:null,relation:"Son-in-law",location:"Lucknow, UP",phone:"+91 98765 00007",email:"",bio:"Rajesh is a retired IAS officer who served with distinction for over 30 years. He spends retirement writing memoirs and mentoring civil service aspirants.",parentId:null,spouseId:7,generation:1},
+  {id:9,name:"Amit Sharma",gender:"male",dob:"1983",dod:null,relation:"Grandson",location:"Delhi",phone:"+91 98765 00008",email:"amit@sharma.com",bio:"Amit is a senior software architect at a leading tech company. He built this very family tree website! His quick wit and helpful nature make him a family favourite.",parentId:3,spouseId:14,generation:2},
+  {id:10,name:"Priya Sharma",gender:"female",dob:"1986",dod:null,relation:"Granddaughter",location:"Bangalore",phone:"+91 98765 00009",email:"",bio:"Priya is an award-winning graphic designer and creative director. Her artistic sensibility has earned her international recognition. She loves painting in spare time.",parentId:3,spouseId:null,generation:2},
+  {id:11,name:"Ravi Sharma",gender:"male",dob:"1985",dod:null,relation:"Grandson",location:"Mumbai",phone:"+91 98765 00010",email:"ravi@sharma.com",bio:"Ravi is a fund manager who inherited his father's precision and his mother's analytical mind. An avid photographer and jazz enthusiast.",parentId:5,spouseId:12,generation:2},
+  {id:12,name:"Kavita Sharma",gender:"female",dob:"1987",dod:null,relation:"Granddaughter-in-law",location:"Mumbai",phone:"+91 98765 00011",email:"",bio:"Kavita is a fashion designer and entrepreneur running two boutiques in Mumbai. Her impeccable taste has made her label a household name in the city.",parentId:null,spouseId:11,generation:2},
+  {id:13,name:"Pooja Sharma",gender:"female",dob:"1988",dod:null,relation:"Granddaughter",location:"Mumbai",phone:"+91 98765 00012",email:"",bio:"Pooja is a yoga instructor and meditation guide who volunteers with three NGOs. She has brought mindfulness practices to her entire community.",parentId:5,spouseId:null,generation:2},
+  {id:14,name:"Sanya Sharma",gender:"female",dob:"1985",dod:null,relation:"Granddaughter-in-law",location:"Delhi",phone:"+91 98765 00013",email:"sanya@sharma.com",bio:"Sanya is a marketing strategist who married Amit in 2010. Vibrant and eloquent, she runs her own boutique marketing agency and is a sought-after speaker.",parentId:null,spouseId:9,generation:2},
+  {id:15,name:"Arjun Verma",gender:"male",dob:"1987",dod:null,relation:"Grandson",location:"Lucknow, UP",phone:"+91 98765 00014",email:"arjun@verma.com",bio:"Arjun is a practicing advocate at the Allahabad High Court specializing in constitutional law. He takes pro-bono cases for marginalized communities.",parentId:7,spouseId:null,generation:2},
+  {id:16,name:"Divya Verma",gender:"female",dob:"1990",dod:null,relation:"Granddaughter",location:"Lucknow, UP",phone:"+91 98765 00015",email:"",bio:"Divya is a visual artist who runs an art school in Lucknow. Her works have been exhibited in galleries across India and in Paris.",parentId:7,spouseId:null,generation:2},
+  {id:17,name:"Aryan Sharma",gender:"male",dob:"2010",dod:null,relation:"Great-grandson",location:"Delhi",phone:"",email:"",bio:"Aryan is a football enthusiast and avid reader who adores his great-grandmother Savitri's stories. He aspires to become a pilot.",parentId:9,spouseId:null,generation:3},
+  {id:18,name:"Aanya Sharma",gender:"female",dob:"2013",dod:null,relation:"Great-granddaughter",location:"Delhi",phone:"",email:"",bio:"Aanya is a bright, imaginative child who loves painting and dancing. She has already won several school art competitions and makes everyone smile.",parentId:9,spouseId:null,generation:3},
+  {id:19,name:"Dev Sharma",gender:"male",dob:"2012",dod:null,relation:"Great-grandson",location:"Mumbai",phone:"",email:"",bio:"Dev loves science experiments, robotics, and astronomy. He wants to be an astronaut and asks questions that stump every adult at the dinner table.",parentId:11,spouseId:null,generation:3}
 ];
 
-/* ═══════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════ */
-let members = JSON.parse(JSON.stringify(DEFAULT));
-let isAdmin = localStorage.getItem('ft_admin') === '1';
-let editId = null;
+/* ════════════════ STATE ════════════════ */
+const SKEY = 'ft-family-shared-v3';
+let members = [];
+let isAdmin = false;
+let editId  = null;
+const SHARED = true; // all visitors share this storage
 
-const CARD_W = 122, CARD_H = 158;
-const H_GAP = 48, V_GAP = 96;
-const COUPLE_GAP = 18;
-const CUW = CARD_W*2 + COUPLE_GAP; // couple unit width
-const PAD = 40;
+/* ════════════════ STORAGE ════════════════ */
+function setSyncUI(state){
+  const badge = document.getElementById('sync-badge');
+  const dot   = badge.querySelector('.sdot');
+  const txt   = document.getElementById('sync-txt');
+  badge.className = '';badge.id='sync-badge';dot.className='sdot';
+  if(state==='saving'){badge.classList.add('saving');dot.classList.add('pulse');txt.textContent='Saving…';}
+  else if(state==='saved'){badge.classList.add('saved');txt.textContent='Synced ✓';setTimeout(()=>{badge.className='';badge.id='sync-badge';txt.textContent='Live';},2500);}
+  else if(state==='err'){badge.classList.add('err');txt.textContent='Offline';}
+  else {txt.textContent='Live';}
+}
 
-
-
-/* ═══════════════════════════════════════════
-   TREE LAYOUT
-═══════════════════════════════════════════ */
-function buildTree(){
-  const rendered = new Set();
-
-  function node(m){
-    if(rendered.has(m.id)) return null;
-    rendered.add(m.id);
-    const spouse = m.spouseId ? members.find(x=>x.id===m.spouseId) : null;
-    if(spouse) rendered.add(spouse.id);
-
-    const sids = spouse ? [m.id, spouse.id] : [m.id];
-    const children = members
-      .filter(c => sids.includes(c.parentId) && !rendered.has(c.id))
-      .map(c => node(c))
-      .filter(Boolean);
-
-    return {m, spouse, children, x:0, y:0, w:0};
+async function loadData(){
+  setSyncUI('saving');
+  try{
+    const res = await window.storage.get(SKEY, SHARED);
+    if(res && res.value){
+      members = JSON.parse(res.value);
+      setSyncUI('saved');
+    } else {
+      members = JSON.parse(JSON.stringify(SEED));
+      await saveData(false);
+    }
+  } catch(e){
+    members = JSON.parse(JSON.stringify(SEED));
+    setSyncUI('err');
+    console.warn('Shared storage unavailable, running locally.', e);
   }
-
-  const root = members.find(m => !m.parentId && m.generation===0 && m.gender==='male')
-             || members.find(m => !m.parentId && m.generation===0);
-  return root ? node(root) : null;
 }
 
-function calcWidth(n){
-  const self = n.spouse ? CUW : CARD_W;
-  if(!n.children.length){ n.w = self; return; }
-  n.children.forEach(calcWidth);
-  const cw = n.children.reduce((s,c)=>s+c.w,0) + H_GAP*(n.children.length-1);
-  n.w = Math.max(self, cw);
+async function saveData(showToastSync=true){
+  if(showToastSync) setSyncUI('saving');
+  try{
+    await window.storage.set(SKEY, JSON.stringify(members), SHARED);
+    if(showToastSync) setSyncUI('saved');
+  }catch(e){
+    setSyncUI('err');
+    console.error('Save failed',e);
+  }
 }
 
-function position(n, cx, y){
-  n.x = cx; n.y = y;
-  if(!n.children.length) return;
-  const total = n.children.reduce((s,c)=>s+c.w,0) + H_GAP*(n.children.length-1);
-  let lx = cx - total/2;
-  n.children.forEach(c=>{ position(c, lx + c.w/2, y + CARD_H + V_GAP); lx += c.w + H_GAP; });
+/* ════════════════ TREE LAYOUT ════════════════ */
+const CW=122,CH=158,HG=50,VG=94,CPG=18,CUW=CW*2+CPG,PAD=44;
+
+function buildTree(){
+  const done=new Set();
+  function node(m){
+    if(done.has(m.id)) return null;
+    done.add(m.id);
+    const spouse=m.spouseId?members.find(x=>x.id===m.spouseId):null;
+    if(spouse) done.add(spouse.id);
+    const sids=spouse?[m.id,spouse.id]:[m.id];
+    const children=members.filter(c=>sids.includes(c.parentId)&&!done.has(c.id)).map(c=>node(c)).filter(Boolean);
+    return{m,spouse,children,x:0,y:0,w:0};
+  }
+  const root=members.find(m=>!m.parentId&&m.generation===0&&m.gender==='male')
+            ||members.find(m=>!m.parentId&&m.generation===0);
+  return root?node(root):null;
+}
+function calcW(n){
+  const s=n.spouse?CUW:CW;
+  if(!n.children.length){n.w=s;return;}
+  n.children.forEach(calcW);
+  const cw=n.children.reduce((a,c)=>a+c.w,0)+HG*(n.children.length-1);
+  n.w=Math.max(s,cw);
+}
+function pos(n,cx,y){
+  n.x=cx;n.y=y;
+  if(!n.children.length)return;
+  const tot=n.children.reduce((a,c)=>a+c.w,0)+HG*(n.children.length-1);
+  let lx=cx-tot/2;
+  n.children.forEach(c=>{pos(c,lx+c.w/2,y+CH+VG);lx+=c.w+HG;});
+}
+function flat(n,nodes=[],edges=[]){
+  nodes.push(n);n.children.forEach(c=>{edges.push({p:n,c});flat(c,nodes,edges);});
+  return{nodes,edges};
 }
 
-function flatten(n, nodes=[], edges=[]){
-  nodes.push(n);
-  n.children.forEach(c=>{ edges.push({p:n,c}); flatten(c,nodes,edges); });
-  return {nodes,edges};
-}
-
-/* ═══════════════════════════════════════════
-   RENDER TREE
-═══════════════════════════════════════════ */
+/* ════════════════ RENDER ════════════════ */
 function renderTree(){
-  const root = buildTree();
-  const wrap = document.getElementById('tree-nodes');
-  const svg  = document.getElementById('tree-svg');
-  wrap.innerHTML = ''; svg.innerHTML = '';
-
-  document.getElementById('lbl-count').textContent = members.length + ' members';
-
+  const wrap=document.getElementById('tree-nodes');
+  const svg=document.getElementById('tree-svg');
+  wrap.innerHTML='';svg.innerHTML='';
+  document.getElementById('lbl-count').textContent=members.length+' members';
+  const root=buildTree();
   if(!root){
-    wrap.innerHTML = '<div style="text-align:center;padding:60px;color:var(--text-dim);font-style:italic">No family data. Add members via Admin panel.</div>';
+    wrap.innerHTML='<div style="text-align:center;padding:80px;color:var(--text-dim);font-style:italic">No members yet. Login as Admin and add the first member.</div>';
     return;
   }
+  calcW(root);pos(root,root.w/2+PAD,PAD);
+  const{nodes,edges}=flat(root);
+  let mx=0,my=0;
+  nodes.forEach(n=>{mx=Math.max(mx,n.x+(n.spouse?CUW:CW)/2+PAD);my=Math.max(my,n.y+CH+PAD);});
+  const W=Math.max(mx,window.innerWidth-40);
+  const cvs=document.getElementById('tree-canvas');
+  cvs.style.width=W+'px';cvs.style.height=my+'px';
+  svg.setAttribute('width',W);svg.setAttribute('height',my);
 
-  calcWidth(root);
-  position(root, root.w/2 + PAD, PAD);
-
-  const {nodes, edges} = flatten(root);
-
-  // canvas size
-  let maxX = 0, maxY = 0;
-  nodes.forEach(n=>{
-    const hw = (n.spouse ? CUW : CARD_W);
-    maxX = Math.max(maxX, n.x + hw/2 + PAD);
-    maxY = Math.max(maxY, n.y + CARD_H + PAD);
-  });
-
-  const cvs = document.getElementById('tree-canvas');
-  const W = Math.max(maxX, window.innerWidth - 40);
-  cvs.style.width  = W + 'px';
-  cvs.style.height = maxY + 'px';
-  svg.setAttribute('width', W);
-  svg.setAttribute('height', maxY);
-
-  // draw edges
   edges.forEach(({p,c})=>{
-    const px = p.x, py = p.y + CARD_H;
-    const cx = c.x, cy = c.y;
-    const mid = py + (cy - py) * .5;
-    const path = mkSvg('path');
+    const px=p.x,py=p.y+CH,cx=c.x,cy=c.y,mid=py+(cy-py)*.5;
+    const path=mkS('path');
     path.setAttribute('d',`M${px},${py} C${px},${mid} ${cx},${mid} ${cx},${cy}`);
-    path.setAttribute('stroke','#c9a84c');
-    path.setAttribute('stroke-width','1.8');
-    path.setAttribute('fill','none');
-    path.setAttribute('stroke-opacity','0.7');
+    path.setAttribute('stroke','#c9a84c');path.setAttribute('stroke-width','1.7');
+    path.setAttribute('fill','none');path.setAttribute('stroke-opacity','0.6');
     svg.appendChild(path);
-    // small arrow tip
-    const tip = mkSvg('circle');
-    tip.setAttribute('cx',cx); tip.setAttribute('cy',cy);
-    tip.setAttribute('r','3'); tip.setAttribute('fill','#c9a84c');
-    tip.setAttribute('opacity','0.6');
-    svg.appendChild(tip);
+    const dot=mkS('circle');
+    dot.setAttribute('cx',cx);dot.setAttribute('cy',cy);
+    dot.setAttribute('r','3');dot.setAttribute('fill','#c9a84c');dot.setAttribute('opacity','0.5');
+    svg.appendChild(dot);
   });
 
-  // draw couple lines + hearts
   nodes.forEach(n=>{
-    if(!n.spouse) return;
-    const mx = n.x, my = n.y + CARD_H/2;
-    // dashes
-    const line = mkSvg('line');
-    line.setAttribute('x1', mx - COUPLE_GAP/2);
-    line.setAttribute('y1', my);
-    line.setAttribute('x2', mx + COUPLE_GAP/2);
-    line.setAttribute('y2', my);
-    line.setAttribute('stroke','#c9a84c');
-    line.setAttribute('stroke-width','2.5');
-    svg.appendChild(line);
-    // heart
-    const ht = mkSvg('text');
-    ht.setAttribute('x', mx); ht.setAttribute('y', my + 5);
-    ht.setAttribute('text-anchor','middle');
-    ht.setAttribute('font-size','13');
-    ht.setAttribute('fill','#e8a0b0');
-    ht.textContent = '♥';
+    if(!n.spouse)return;
+    const lx=n.x,ly=n.y+CH/2;
+    const ln=mkS('line');
+    ln.setAttribute('x1',lx-CPG/2);ln.setAttribute('y1',ly);
+    ln.setAttribute('x2',lx+CPG/2);ln.setAttribute('y2',ly);
+    ln.setAttribute('stroke','#c9a84c');ln.setAttribute('stroke-width','2.5');
+    svg.appendChild(ln);
+    const ht=mkS('text');
+    ht.setAttribute('x',lx);ht.setAttribute('y',ly+5);
+    ht.setAttribute('text-anchor','middle');ht.setAttribute('font-size','12');
+    ht.setAttribute('fill','#e8a0b0');ht.textContent='♥';
     svg.appendChild(ht);
   });
 
-  // render cards
   nodes.forEach(n=>{
-    const leftX = n.x - (n.spouse ? CUW : CARD_W) / 2;
-    renderCard(wrap, n.m, leftX, n.y);
-    if(n.spouse) renderCard(wrap, n.spouse, leftX + CARD_W + COUPLE_GAP, n.y);
+    const lx=n.x-(n.spouse?CUW:CW)/2;
+    mkCard(wrap,n.m,lx,n.y);
+    if(n.spouse)mkCard(wrap,n.spouse,lx+CW+CPG,n.y);
   });
 
-  // generation labels
-  const genMap = {};
-  nodes.forEach(n=>{ genMap[n.m.generation] = Math.min(genMap[n.m.generation]??999, n.y); });
-  const genNames = ['1st Generation','2nd Generation','3rd Generation','4th Generation','5th Generation'];
-  Object.entries(genMap).forEach(([g,y])=>{
-    const lbl = document.createElement('div');
-    lbl.className = 'gen-label';
-    lbl.style.top = (y + CARD_H/2 - 8) + 'px';
-    lbl.textContent = genNames[g] || `Gen ${+g+1}`;
-    wrap.appendChild(lbl);
+  const gm={};
+  nodes.forEach(n=>{gm[n.m.generation]=Math.min(gm[n.m.generation]??999,n.y);});
+  const gn=['1st Generation','2nd Generation','3rd Generation','4th Generation','5th Generation'];
+  Object.entries(gm).forEach(([g,y])=>{
+    const lbl=document.createElement('div');
+    lbl.className='gen-label';lbl.style.top=(+y+CH/2-8)+'px';
+    lbl.textContent=gn[+g]||`Gen ${+g+1}`;wrap.appendChild(lbl);
   });
 }
 
-function mkSvg(tag){ return document.createElementNS('http://www.w3.org/2000/svg', tag); }
+function mkS(t){return document.createElementNS('http://www.w3.org/2000/svg',t);}
+function ini(n){return n.split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();}
 
-function getInitials(name){
-  return name.split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
-}
-
-function renderCard(wrap, m, x, y){
-  const d = document.createElement('div');
-  d.className = `mcard ${m.gender}${m.dod?' deceased':''}`;
-  d.style.left = x + 'px';
-  d.style.top  = y + 'px';
-  d.style.width = CARD_W + 'px';
-  d.style.height = CARD_H + 'px';
-  d.onclick = ()=> showDetail(m.id);
-  d.innerHTML = `
-    ${m.dod ? `<span class="dec-badge">✝ ${m.dod}</span>` : ''}
-    <span class="gen-badge">G${m.generation+1}</span>
-    <div class="mavatar">${getInitials(m.name)}</div>
-    <div class="mname">${m.name}</div>
-    <div class="mrole">${m.relation}</div>
-    <div class="mdob">b.${m.dob}${m.dod?' – ✝'+m.dod:''}</div>
-  `;
+function mkCard(wrap,m,x,y){
+  const d=document.createElement('div');
+  d.className=`mcard ${m.gender}${m.dod?' deceased':''}`;
+  d.style.cssText=`left:${x}px;top:${y}px;width:${CW}px;height:${CH}px`;
+  d.onclick=()=>showDetail(m.id);
+  d.innerHTML=`${m.dod?`<span class="dec-badge">✝ ${m.dod}</span>`:''}<span class="gen-badge">G${m.generation+1}</span><div class="mavatar">${ini(m.name)}</div><div class="mname">${m.name}</div><div class="mrole">${m.relation}</div><div class="mdob">b.${m.dob||'?'}${m.dod?' – ✝'+m.dod:''}</div>`;
   wrap.appendChild(d);
 }
 
-/* ═══════════════════════════════════════════
-   MEMBER DETAIL MODAL
-═══════════════════════════════════════════ */
+/* ════════════════ DETAIL MODAL ════════════════ */
 function showDetail(id){
-  const m = members.find(x=>x.id===id);
-  if(!m) return;
-  const spouse   = m.spouseId  ? members.find(x=>x.id===m.spouseId)  : null;
-  const parent   = m.parentId  ? members.find(x=>x.id===m.parentId)  : null;
-  const children = members.filter(x=> x.parentId===id || (spouse && x.parentId===spouse.id));
-  const uniq     = [...new Map(children.map(x=>[x.id,x])).values()];
-
-  const bg = m.dod ? 'linear-gradient(135deg,#3a3a3a,#555)'
-           : m.gender==='male' ? 'linear-gradient(135deg,#1e3f6e,#2a5898)'
-           : 'linear-gradient(135deg,#6e1e45,#982a62)';
-
-  const row=(label,val,extra='')=> val
-    ? `<div class="det-item"><label>${label}</label><span ${extra}>${val}</span></div>` : '';
-
-  document.getElementById('det-body').innerHTML = `
-    <div style="text-align:center;margin-bottom:22px">
-      <div class="det-avatar" style="background:${bg}">${getInitials(m.name)}</div>
+  const m=members.find(x=>x.id===id);if(!m)return;
+  const sp=m.spouseId?members.find(x=>x.id===m.spouseId):null;
+  const pa=m.parentId?members.find(x=>x.id===m.parentId):null;
+  const kids=[...new Map(members.filter(x=>x.parentId===id||(sp&&x.parentId===sp.id)).map(x=>[x.id,x])).values()];
+  const bg=m.dod?'linear-gradient(135deg,#3a3a3a,#555)':m.gender==='male'?'linear-gradient(135deg,#1e3f6e,#2a5898)':'linear-gradient(135deg,#6e1e45,#982a62)';
+  const row=(l,v,e='')=>v?`<div class="det-item"><label>${l}</label><span ${e}>${v}</span></div>`:'';
+  document.getElementById('det-body').innerHTML=`
+    <div style="text-align:center;margin-bottom:18px">
+      <div class="det-avatar" style="background:${bg}">${ini(m.name)}</div>
       <div class="det-name">${m.name}</div>
       <div class="det-role">${m.relation}${m.dod?' · ✝ Deceased':''}</div>
     </div>
     <div class="det-grid">
-      ${row('Date of Birth', m.dob ? `${m.dob}` : null)}
-      ${m.dod ? row('Date of Passing', m.dod) : '<div></div>'}
-      ${spouse ? `<div class="det-item"><label>Spouse</label><span class="det-link" onclick="showDetail(${spouse.id})">${spouse.name}</span></div>` : '<div></div>'}
-      ${parent ? `<div class="det-item"><label>Parent</label><span class="det-link" onclick="showDetail(${parent.id})">${parent.name}</span></div>` : '<div></div>'}
-      ${row('Location', m.location)}
-      ${row('Phone', m.phone)}
-      ${row('Email', m.email)}
-      ${uniq.length ? `<div class="det-item" style="grid-column:1/-1"><label>Children (${uniq.length})</label><span>${uniq.map(c=>`<span class="det-link" onclick="showDetail(${c.id})">${c.name}</span>`).join(', ')}</span></div>` : ''}
+      ${row('Date of Birth',m.dob)}
+      ${m.dod?row('Date of Passing',m.dod):'<div></div>'}
+      ${sp?`<div class="det-item"><label>Spouse</label><span class="det-link" onclick="showDetail(${sp.id})">${sp.name}</span></div>`:'<div></div>'}
+      ${pa?`<div class="det-item"><label>Parent</label><span class="det-link" onclick="showDetail(${pa.id})">${pa.name}</span></div>`:'<div></div>'}
+      ${row('Location',m.location)}${row('Phone',m.phone)}${row('Email',m.email)}
+      ${kids.length?`<div class="det-item" style="grid-column:1/-1"><label>Children (${kids.length})</label><span>${kids.map(c=>`<span class="det-link" onclick="showDetail(${c.id})">${c.name}</span>`).join(', ')}</span></div>`:''}
       <div class="det-item"><label>Generation</label><span>Generation ${m.generation+1}</span></div>
     </div>
-    ${m.bio ? `<div class="det-bio"><label>About</label><p>${m.bio}</p></div>` : ''}
-    ${isAdmin ? `<div class="det-actions">
-      <button class="btn btn-sm" onclick="editMember(${m.id})">✏ Edit</button>
-      <button class="btn btn-red btn-sm" onclick="confirmDel(${m.id})">🗑 Delete</button>
-    </div>` : ''}
+    ${m.bio?`<div class="det-bio"><label>About</label><p>${m.bio}</p></div>`:''}
+    ${isAdmin?`<div class="det-actions"><button class="btn btn-sm" onclick="editMember(${m.id})">✏ Edit</button><button class="btn btn-red btn-sm" onclick="confirmDel(${m.id})">🗑 Delete</button></div>`:''}
   `;
   openOv('ov-detail');
 }
 
-/* ═══════════════════════════════════════════
-   AUTH
-═══════════════════════════════════════════ */
-function openLogin(){ document.getElementById('lerr').style.display='none'; openOv('ov-login'); }
-
+/* ════════════════ AUTH ════════════════ */
+function openLogin(){document.getElementById('lerr').style.display='none';openOv('ov-login');}
 function doLogin(){
-  const u = document.getElementById('lu').value.trim();
-  const p = document.getElementById('lp').value;
-  if(u==='admin' && p==='family123'){
-    isAdmin=true; localStorage.setItem('ft_admin','1');
-    closeOv('ov-login'); updateAdminUI(); renderTree();
-    toast('Welcome, Admin! 👑');
-  } else {
-    document.getElementById('lerr').style.display='block';
-  }
+  const u=document.getElementById('lu').value.trim();
+  const p=document.getElementById('lp').value;
+  if(u==='admin'&&p==='family123'){
+    isAdmin=true;closeOv('ov-login');updateAdminUI();renderTree();toast('Welcome, Admin! 👑');
+  } else document.getElementById('lerr').style.display='block';
 }
-
 function doLogout(){
-  isAdmin=false; localStorage.removeItem('ft_admin');
-  document.getElementById('adm').classList.remove('open');
-  updateAdminUI(); renderTree();
-  toast('Logged out successfully.');
+  isAdmin=false;document.getElementById('adm').classList.remove('open');
+  updateAdminUI();renderTree();toast('Logged out successfully.');
 }
-
 function updateAdminUI(){
-  document.getElementById('btn-login').style.display  = isAdmin ? 'none' : '';
-  document.getElementById('btn-adm').style.display    = isAdmin ? '' : 'none';
-  document.getElementById('btn-logout').style.display = isAdmin ? '' : 'none';
+  document.getElementById('btn-login').style.display =isAdmin?'none':'';
+  document.getElementById('btn-adm').style.display   =isAdmin?'':'none';
+  document.getElementById('btn-logout').style.display=isAdmin?'':'none';
 }
 
-/* ═══════════════════════════════════════════
-   ADMIN PANEL
-═══════════════════════════════════════════ */
+/* ════════════════ ADMIN PANEL ════════════════ */
 function toggleAdm(){
-  const p = document.getElementById('adm');
-  p.classList.toggle('open');
-  if(p.classList.contains('open')) renderAdmList();
+  document.getElementById('adm').classList.toggle('open');
+  if(document.getElementById('adm').classList.contains('open')) renderAdmList();
 }
-
 function renderAdmList(){
-  const sorted = [...members].sort((a,b)=> a.generation - b.generation || a.name.localeCompare(b.name));
-  document.getElementById('adm-list').innerHTML = sorted.map(m=>`
+  const s=[...members].sort((a,b)=>a.generation-b.generation||a.name.localeCompare(b.name));
+  document.getElementById('adm-list').innerHTML=s.map(m=>`
     <div class="mlist-item">
-      <div class="mlist-av" style="background:${m.gender==='male'
-        ?'linear-gradient(135deg,#1e3f6e,#2a5898)'
-        :'linear-gradient(135deg,#6e1e45,#982a62)'}">
-        ${getInitials(m.name)}
-      </div>
-      <div class="mlist-info">
-        <div class="mlist-name">${m.name}</div>
-        <div class="mlist-role">${m.relation} · Gen ${m.generation+1}</div>
-      </div>
+      <div class="mlist-av" style="background:${m.gender==='male'?'linear-gradient(135deg,#1e3f6e,#2a5898)':'linear-gradient(135deg,#6e1e45,#982a62)'}">${ini(m.name)}</div>
+      <div class="mlist-info"><div class="mlist-name">${m.name}</div><div class="mlist-role">${m.relation} · Gen ${m.generation+1}</div></div>
       <div class="mlist-btns">
         <button class="ibtn" onclick="editMember(${m.id})" title="Edit">✏️</button>
         <button class="ibtn del" onclick="confirmDel(${m.id})" title="Delete">🗑️</button>
@@ -718,139 +514,111 @@ function renderAdmList(){
     </div>
   `).join('');
 }
-
-function fillSelects(excludeId=null, selParent=null, selSpouse=null){
-  const opts = members.filter(m=>m.id!==excludeId);
-  document.getElementById('f-parent').innerHTML =
-    '<option value="">— Root / No parent —</option>' +
-    opts.map(m=>`<option value="${m.id}" ${m.id===selParent?'selected':''}>${m.name} (G${m.generation+1})</option>`).join('');
-  document.getElementById('f-spouse').innerHTML =
-    '<option value="">— None —</option>' +
-    opts.map(m=>`<option value="${m.id}" ${m.id===selSpouse?'selected':''}>${m.name}</option>`).join('');
+function fillSel(excl=null,sp=null,ss=null){
+  const o=members.filter(m=>m.id!==excl);
+  document.getElementById('f-parent').innerHTML='<option value="">— Root / No parent —</option>'+o.map(m=>`<option value="${m.id}"${m.id===sp?' selected':''}>${m.name} (G${m.generation+1})</option>`).join('');
+  document.getElementById('f-spouse').innerHTML='<option value="">— None —</option>'+o.map(m=>`<option value="${m.id}"${m.id===ss?' selected':''}>${m.name}</option>`).join('');
 }
-
 function showForm(){
   editId=null;
   document.getElementById('form-title').textContent='Add New Member';
-  ['f-id','f-fn','f-ln','f-dob','f-dod','f-role','f-loc','f-phone','f-email','f-bio'].forEach(id=>document.getElementById(id).value='');
+  ['f-id','f-fn','f-ln','f-dob','f-dod','f-role','f-loc','f-phone','f-email','f-bio'].forEach(i=>document.getElementById(i).value='');
   document.getElementById('f-gender').value='male';
-  fillSelects();
+  fillSel();
   document.getElementById('adm-form').style.display='block';
   document.getElementById('adm-form').scrollIntoView({behavior:'smooth'});
 }
-
 function editMember(id){
-  const m = members.find(x=>x.id===id); if(!m) return;
-  editId = id;
-  const parts = m.name.split(' ');
-  const ln = parts.pop(); const fn = parts.join(' ');
+  const m=members.find(x=>x.id===id);if(!m)return;
+  editId=id;
+  const parts=m.name.split(' ');const ln=parts.pop();const fn=parts.join(' ');
   document.getElementById('form-title').textContent='Edit Member';
-  document.getElementById('f-id').value     = m.id;
-  document.getElementById('f-fn').value     = fn;
-  document.getElementById('f-ln').value     = ln;
-  document.getElementById('f-gender').value = m.gender;
-  document.getElementById('f-dob').value    = m.dob||'';
-  document.getElementById('f-dod').value    = m.dod||'';
-  document.getElementById('f-role').value   = m.relation||'';
-  document.getElementById('f-loc').value    = m.location||'';
-  document.getElementById('f-phone').value  = m.phone||'';
-  document.getElementById('f-email').value  = m.email||'';
-  document.getElementById('f-bio').value    = m.bio||'';
-  fillSelects(id, m.parentId, m.spouseId);
+  document.getElementById('f-id').value=m.id;
+  document.getElementById('f-fn').value=fn;
+  document.getElementById('f-ln').value=ln;
+  document.getElementById('f-gender').value=m.gender;
+  document.getElementById('f-dob').value=m.dob||'';
+  document.getElementById('f-dod').value=m.dod||'';
+  document.getElementById('f-role').value=m.relation||'';
+  document.getElementById('f-loc').value=m.location||'';
+  document.getElementById('f-phone').value=m.phone||'';
+  document.getElementById('f-email').value=m.email||'';
+  document.getElementById('f-bio').value=m.bio||'';
+  fillSel(id,m.parentId,m.spouseId);
   closeOv('ov-detail');
   document.getElementById('adm').classList.add('open');
   document.getElementById('adm-form').style.display='block';
   document.getElementById('adm-form').scrollIntoView({behavior:'smooth'});
 }
+function cancelForm(){document.getElementById('adm-form').style.display='none';editId=null;}
 
-function cancelForm(){
-  document.getElementById('adm-form').style.display='none';
-  editId=null;
-}
-
-function saveMember(){
-  const fn = document.getElementById('f-fn').value.trim();
-  const ln = document.getElementById('f-ln').value.trim();
-  if(!fn||!ln){ toast('Please enter first and last name.'); return; }
-
-  const parentId = parseInt(document.getElementById('f-parent').value)||null;
-  const spouseId = parseInt(document.getElementById('f-spouse').value)||null;
-  const parent   = parentId ? members.find(m=>m.id===parentId) : null;
-  const gen      = parent ? parent.generation+1 : 0;
-
-  const data = {
-    name: `${fn} ${ln}`,
-    gender: document.getElementById('f-gender').value,
-    dob: document.getElementById('f-dob').value.trim()||null,
-    dod: document.getElementById('f-dod').value.trim()||null,
-    relation: document.getElementById('f-role').value.trim(),
-    location: document.getElementById('f-loc').value.trim(),
-    phone: document.getElementById('f-phone').value.trim(),
-    email: document.getElementById('f-email').value.trim(),
-    bio: document.getElementById('f-bio').value.trim(),
-    parentId, spouseId, generation: gen
-  };
-
+async function saveMember(){
+  const fn=document.getElementById('f-fn').value.trim();
+  const ln=document.getElementById('f-ln').value.trim();
+  if(!fn||!ln){toast('Please enter first and last name.');return;}
+  const pid=parseInt(document.getElementById('f-parent').value)||null;
+  const sid=parseInt(document.getElementById('f-spouse').value)||null;
+  const par=pid?members.find(m=>m.id===pid):null;
+  const gen=par?par.generation+1:0;
+  const data={name:`${fn} ${ln}`,gender:document.getElementById('f-gender').value,
+    dob:document.getElementById('f-dob').value.trim()||null,
+    dod:document.getElementById('f-dod').value.trim()||null,
+    relation:document.getElementById('f-role').value.trim(),
+    location:document.getElementById('f-loc').value.trim(),
+    phone:document.getElementById('f-phone').value.trim(),
+    email:document.getElementById('f-email').value.trim(),
+    bio:document.getElementById('f-bio').value.trim(),
+    parentId:pid,spouseId:sid,generation:gen};
   if(editId){
-    const i = members.findIndex(m=>m.id===editId);
-    members[i] = {...members[i], ...data};
-    // update old spouse
-    members.forEach(m=>{ if(m.spouseId===editId && m.id!==spouseId) m.spouseId=null; });
-    if(spouseId){ const si=members.findIndex(m=>m.id===spouseId); if(si>-1) members[si].spouseId=editId; }
+    const i=members.findIndex(m=>m.id===editId);
+    members[i]={...members[i],...data};
+    members.forEach(m=>{if(m.spouseId===editId&&m.id!==sid)m.spouseId=null;});
+    if(sid){const si=members.findIndex(m=>m.id===sid);if(si>-1)members[si].spouseId=editId;}
     toast('Member updated ✓');
   } else {
-    const newId = Math.max(0,...members.map(m=>m.id))+1;
-    members.push({id:newId,...data});
-    if(spouseId){ const si=members.findIndex(m=>m.id===spouseId); if(si>-1) members[si].spouseId=newId; }
+    const nid=Math.max(0,...members.map(m=>m.id))+1;
+    members.push({id:nid,...data});
+    if(sid){const si=members.findIndex(m=>m.id===sid);if(si>-1)members[si].spouseId=nid;}
     toast('Member added ✓');
   }
-
-  save(); cancelForm(); renderTree(); renderAdmList();
+  await saveData();
+  cancelForm();renderTree();renderAdmList();
 }
 
-function confirmDel(id){
-  const m = members.find(x=>x.id===id);
-  if(!m) return;
-  if(confirm(`Delete "${m.name}"?\n\nThis will also unlink their spouse and parent connections. This cannot be undone.`)){
-    members.forEach(x=>{ if(x.spouseId===id) x.spouseId=null; if(x.parentId===id) x.parentId=null; });
-    members = members.filter(x=>x.id!==id);
-    save(); closeOv('ov-detail'); renderTree(); renderAdmList();
+async function confirmDel(id){
+  const m=members.find(x=>x.id===id);if(!m)return;
+  if(confirm(`Delete "${m.name}"?\n\nThis removes them from the tree for ALL visitors. This cannot be undone.`)){
+    members.forEach(x=>{if(x.spouseId===id)x.spouseId=null;if(x.parentId===id)x.parentId=null;});
+    members=members.filter(x=>x.id!==id);
+    await saveData();
+    closeOv('ov-detail');renderTree();renderAdmList();
     toast(`"${m.name}" removed.`);
   }
 }
 
-/* ═══════════════════════════════════════════
-   MODAL HELPERS
-═══════════════════════════════════════════ */
-function openOv(id){ document.getElementById(id).classList.add('on'); }
-function closeOv(id){ document.getElementById(id).classList.remove('on'); }
+/* ════════════════ MODALS ════════════════ */
+function openOv(id){document.getElementById(id).classList.add('on');}
+function closeOv(id){document.getElementById(id).classList.remove('on');}
+document.querySelectorAll('.overlay').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.remove('on');}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.overlay.on').forEach(o=>o.classList.remove('on'));});
 
-document.querySelectorAll('.overlay').forEach(ov=>{
-  ov.addEventListener('click', e=>{ if(e.target===ov) ov.classList.remove('on'); });
-});
-
-document.addEventListener('keydown', e=>{
-  if(e.key==='Escape') document.querySelectorAll('.overlay.on').forEach(o=>o.classList.remove('on'));
-});
-
-/* ═══════════════════════════════════════════
-   TOAST
-═══════════════════════════════════════════ */
+/* ════════════════ TOAST ════════════════ */
 let _tt;
-function toast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('on');
-  clearTimeout(_tt); _tt = setTimeout(()=>t.classList.remove('on'), 3200);
-}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('on'),3000);}
 
-/* ═══════════════════════════════════════════
-   INIT
-═══════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', ()=>{
+/* ════════════════ INIT ════════════════ */
+async function init(){
+  await loadData();
   updateAdminUI();
   renderTree();
-});
-window.addEventListener('resize', ()=> renderTree());
+  const ld=document.getElementById('loading');
+  ld.style.transition='opacity .5s';ld.style.opacity='0';
+  setTimeout(()=>ld.style.display='none',520);
+  document.getElementById('notice').style.display='block';
+}
+
+window.addEventListener('resize',()=>renderTree());
+init();
 </script>
 </body>
 </html>
