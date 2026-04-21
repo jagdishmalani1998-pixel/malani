@@ -431,7 +431,7 @@ const DEFAULT = [
 /* ═══════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════ */
-let members = JSON.parse(localStorage.getItem('ft_members') || 'null') || JSON.parse(JSON.stringify(DEFAULT));
+let members = JSON.parse(JSON.stringify(DEFAULT));
 let isAdmin = localStorage.getItem('ft_admin') === '1';
 let editId = null;
 
